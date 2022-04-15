@@ -10,7 +10,7 @@ if useFakeData:
 
 A run of 10 epochs give these loss and accruacy plots:
 
-![Loss](https://github.com/veirs/orcasound-signal-classifier/blob/main/notesfakeModelLoss.png "Loss history")
+![Loss](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/fakeModelLoss.png "Loss history")
 ![Accuracy](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/fakeModelAccuracy.png "Accruacy history")   
 
 And these confusion matrices (for one batchsize of records):
