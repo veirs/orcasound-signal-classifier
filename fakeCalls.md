@@ -5,15 +5,15 @@ if useFakeData:
     
     generates (1000, 256, 256) fake calls and backgrounds
     
-![alt text](https://github.com/veirs/orcasound-signal-classifier/notes/fakeCall.png "Fake Call")
-![alt text](https://github.com/veirs/orcasound-signal-classifier/notes/fakeBackground.png "Fake Background")   
+![Fake call](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/fakeCall.png "Fake Call")
+![Fake background](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/fakeBackground.png "Fake Background")   
 
 A run of 10 epochs give these loss and accruacy plots:
 
-![alt text](https://github.com/veirs/orcasound-signal-classifier/notesfakeModelLoss.png "Loss history")
-![alt text](https://github.com/veirs/orcasound-signal-classifier/notes/fakeModelAccuracy.png "Accruacy history")   
+![Loss](https://github.com/veirs/orcasound-signal-classifier/blob/main/notesfakeModelLoss.png "Loss history")
+![Accuracy](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/fakeModelAccuracy.png "Accruacy history")   
 
-And these confusion matrices (for one batchsize of records:
+And these confusion matrices (for one batchsize of records):
 
 Confusion matrix fractions for predictions on dataset **train** dataset of length 100
 
@@ -32,5 +32,5 @@ Confusion matrix fractions for predictions on dataset **test** dataset of length
 |   Label = 1    |  FP 0.100 |   TP 0.400 |
 
 
-
+**If the failure to classify the test dataset is due to 'over fitting', what should be done? **
 

@@ -1,5 +1,7 @@
 ##  Test of dense net at end of CNN Encoder
 
+**Github humpback call database is still too large to upload.  I am reducing size.  Use the fake data option**
+
 # My Questions are:
 
 Why does the NN not converge and detect the labelled calls?
