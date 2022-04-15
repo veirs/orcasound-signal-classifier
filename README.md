@@ -11,8 +11,9 @@ here is the confusion matrix after 10 epochs:
 Confusion matrix fractions for predictions on dataset train dataset of length 828
 
 
-             PREDICT   0            1
-  *   Label = 0      TN 0.390    FN 0.136
-  *   Label = 1      FP 0.278    TP 0.196
+|        PREDICT |     0     |      1     |
+| -------------- |:---------:|:----------:|
+|   Label = 0    |  TN 0.390 |   FN 0.136 |
+|   Label = 1    |  FP 0.278 |   TP 0.196 |
 
       
