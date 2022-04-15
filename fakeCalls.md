@@ -34,3 +34,31 @@ Confusion matrix fractions for predictions on dataset **test** dataset of length
 
 **If the failure to classify the test dataset is due to 'over fitting', what should be done? **
 
+# Run with larger fake dataset?
+
+Run 40 epochs on fake dataset of 7000 records
+
+Save model as: models/Classify_h5fakeSpecsSml_[256-128-32-8]_Em_h5_0_40_epochs/
+
+Confusion matrix fractions for predictions on dataset **train** dataset of length 100
+
+
+|        PREDICT |     0     |      1     |
+| -------------- |:---------:|:----------:|
+|   Label = 0    |  TN 0.330 |   FN 0.190 |
+|   Label = 1    |  FP 0.000 |   TP 0.480 |
+
+Confusion matrix fractions for predictions on dataset **test** dataset of length 100
+
+
+|        PREDICT |     0     |      1     |
+| -------------- |:---------:|:----------:|
+|   Label = 0    |  TN 0.360 |   FN 0.120 |
+|   Label = 1    |  FP 0.100 |   TP 0.520 |
+
+**Weirdly, now the NN does better on the **test** dataset
+
+![Loss - Accuracy](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/7000_40_FakeRecords.png "Loss&Accruacy history")  
+
+Try Dropout somewhere? 
+

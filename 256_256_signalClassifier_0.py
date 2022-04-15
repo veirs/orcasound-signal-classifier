@@ -91,11 +91,11 @@ def buildFakeSpectra(Nrecords, Ntimes, Npsds):
     h5db["train_labels"] = trainLbls
     h5db['test_specs'] = testSpecs
     h5db["test_labels"] = testLbls
-    print("Plot some examples of fake data")
-    for i in range(10):
-        plt.imshow(h5db['train_specs'][i])
-        plt.title("Label is {}".format(h5db["train_labels"][i]))
-        plt.show()
+#    print("Plot some examples of fake data")
+#    for i in range(10):
+#        plt.imshow(h5db['train_specs'][i])
+#        plt.title("Label is {}".format(h5db["train_labels"][i]))
+#        plt.show()
     h5db.close()
     return h5filename
 
@@ -161,9 +161,10 @@ baseDir = "/home/val/PycharmProjects/github/signal-classifier/"
 
 loadAE_ModelFilename = ""
 h5filename = "h5fileHWcalls_1110records.h5"
+h5filename = ""  #"h5fakeSpecsSml.h5"
 
 batchsize = 100
-total_epochs = 10
+total_epochs = 40
 prior_epochs = 0
 
 encoderLayers = [256, 128, 32, 8]
@@ -173,7 +174,7 @@ useFakeData = True
 ### setup the data input
 # initialize generator
 if useFakeData:
-    h5filename = buildFakeSpectra(1000, 256, 256)  # build h5 database with this many records of shape (1000, 256, 256)
+    h5filename = buildFakeSpectra(7000, 256, 256)  # build h5 database with this many records of shape (1000, 256, 256)
 h5file = h5py.File(h5filename, 'r')
 print(h5filename, "keys are", h5file.keys())
 for key in h5file.keys():
@@ -206,7 +207,7 @@ else:
     outputs = classifyLayers(bottleneck)
     classifyAE_Model = Model(inputs, outputs)
 
-classifyAE_Model.compile(loss="binary_crossentropy", optimizer=Adam(lr=1e-4),
+classifyAE_Model.compile(loss="binary_crossentropy", optimizer=Adam(lr=1e-3),
                              metrics=['accuracy'])  # adam default learning_rate is 0.001
 
 print(classifyAE_Model.summary())
@@ -244,21 +245,24 @@ print("Elapsed time s {}, m {}, hr {:.2f} s/epoch {:.2f} ".format(int(tstop - ts
 
 # list all data in history
 print("history keys",history.history.keys(), "models/history_{}_[]-{}_1100.pkl".format(newModelID, prior_epochs, total_epochs))
-# summarize history for accuracy
+# summarize history for accuracy and loss
+plt.subplot(1, 2, 1)
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-plt.show()
-# summarize history for loss
+
+plt.subplot(1, 2, 2)
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
+
+plt.tight_layout()
 plt.show()
 
 ###  print confusion matrix on the data files
