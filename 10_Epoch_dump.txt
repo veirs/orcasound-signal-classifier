@@ -1,0 +1,104 @@
+h5fileHWcalls_1110records.h5 keys are <KeysViewHDF5 ['eval_labels', 'eval_specs', 'test_labels', 'test_specs', 'train_labels', 'train_specs']>
+eval_labels length 54
+eval_specs length 54
+test_labels length 228
+test_specs length 228
+train_labels length 828
+train_specs length 828
+top of generate
+Confusion matrix fractions for predictions on dataset train dataset of length 100
+             PREDICT   0            1
+   Label = 0      TN 0.160    FN 0.350
+   Label = 1      FP 0.110    TP 0.380
+WARNING:tensorflow:`period` argument is deprecated. Please use `save_freq` to specify the frequency in number of batches seen.
+start model at time 1649980530.6896343 secs
+Epoch 1/10
+2022-04-14 16:55:31.324628: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1677721600 exceeds 10% of free system memory.
+2022-04-14 16:55:31.766217: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1677721600 exceeds 10% of free system memory.
+2022-04-14 16:55:33.074141: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1677721600 exceeds 10% of free system memory.
+2022-04-14 16:55:35.251575: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1677721600 exceeds 10% of free system memory.
+2022-04-14 16:55:39.085913: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1677721600 exceeds 10% of free system memory.
+batchcount= 10 batchsize= 100
+top of generate
+batchcount= 10 batchsize= 100
+
+Epoch 1: loss improved from inf to 0.47669, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+2022-04-14 16:57:43.850463: W tensorflow/python/util/util.cc:368] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
+10/10 - 134s - loss: 0.4767 - accuracy: 0.8280 - val_loss: 0.6908 - val_accuracy: 0.5370 - 134s/epoch - 13s/step
+Epoch 2/10
+batchcount= 20 batchsize= 100
+batchcount= 20 batchsize= 100
+
+Epoch 2: loss improved from 0.47669 to 0.24313, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 132s - loss: 0.2431 - accuracy: 0.9770 - val_loss: 0.7004 - val_accuracy: 0.5080 - 132s/epoch - 13s/step
+Epoch 3/10
+batchcount= 30 batchsize= 100
+batchcount= 30 batchsize= 100
+
+Epoch 3: loss improved from 0.24313 to 0.15739, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 132s - loss: 0.1574 - accuracy: 0.9860 - val_loss: 0.7006 - val_accuracy: 0.4960 - 132s/epoch - 13s/step
+Epoch 4/10
+batchcount= 40 batchsize= 100
+batchcount= 40 batchsize= 100
+
+Epoch 4: loss improved from 0.15739 to 0.11405, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 132s - loss: 0.1140 - accuracy: 0.9840 - val_loss: 0.6902 - val_accuracy: 0.4770 - 132s/epoch - 13s/step
+Epoch 5/10
+batchcount= 50 batchsize= 100
+batchcount= 50 batchsize= 100
+
+Epoch 5: loss improved from 0.11405 to 0.09953, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 132s - loss: 0.0995 - accuracy: 0.9850 - val_loss: 0.6843 - val_accuracy: 0.5770 - 132s/epoch - 13s/step
+Epoch 6/10
+batchcount= 60 batchsize= 100
+batchcount= 60 batchsize= 100
+
+Epoch 6: loss did not improve from 0.09953
+10/10 - 131s - loss: 0.1194 - accuracy: 0.9720 - val_loss: 0.6870 - val_accuracy: 0.5070 - 131s/epoch - 13s/step
+Epoch 7/10
+batchcount= 70 batchsize= 100
+batchcount= 70 batchsize= 100
+
+Epoch 7: loss did not improve from 0.09953
+10/10 - 129s - loss: 0.1140 - accuracy: 0.9810 - val_loss: 0.6934 - val_accuracy: 0.5070 - 129s/epoch - 13s/step
+Epoch 8/10
+batchcount= 80 batchsize= 100
+batchcount= 80 batchsize= 100
+
+Epoch 8: loss improved from 0.09953 to 0.09590, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 120s - loss: 0.0959 - accuracy: 0.9870 - val_loss: 0.7055 - val_accuracy: 0.5240 - 120s/epoch - 12s/step
+Epoch 9/10
+batchcount= 90 batchsize= 100
+batchcount= 90 batchsize= 100
+
+Epoch 9: loss improved from 0.09590 to 0.08181, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 104s - loss: 0.0818 - accuracy: 0.9890 - val_loss: 0.7126 - val_accuracy: 0.4780 - 104s/epoch - 10s/step
+Epoch 10/10
+batchcount= 100 batchsize= 100
+batchcount= 100 batchsize= 100
+batchcount= 110 batchsize= 100
+
+Epoch 10: loss improved from 0.08181 to 0.08073, saving model to models/Classifier_75_20_5_[256-128-32-8]_Em_h5_best_1100.ckpt
+10/10 - 103s - loss: 0.0807 - accuracy: 0.9860 - val_loss: 0.7634 - val_accuracy: 0.4660 - 103s/epoch - 10s/step
+save classifyAE_Model Classifier_75_20_5_[256-128-32-8]_Em_h5 at directory 
+models/Classifier_75_20_5_[256-128-32-8]_Em_h5_0_10_epochs/
+Elapsed time s 1250, m 20, hr 0.35 s/epoch 125.08 
+history keys dict_keys(['loss', 'accuracy', 'val_loss', 'val_accuracy']) models/history_Classifier_75_20_5_[256-128-32-8]_Em_h5_[]-0_1100.pkl
+
+
+Confusion matrix fractions for predictions on dataset train dataset of length 828
+             PREDICT   0            1
+   Label = 0      TN 0.390    FN 0.136
+   Label = 1      FP 0.278    TP 0.196
+WARNING:tensorflow:Keras is training/fitting/evaluating on array-like data. Keras may not be optimized for this format, so if your input data format is supported by TensorFlow I/O (https://github.com/tensorflow/io) we recommend using that to load a Dataset instead.
+Confusion matrix fractions for predictions on dataset test dataset of length 228
+             PREDICT   0            1
+   Label = 0      TN 0.377    FN 0.105
+   Label = 1      FP 0.360    TP 0.158
+WARNING:tensorflow:Keras is training/fitting/evaluating on array-like data. Keras may not be optimized for this format, so if your input data format is supported by TensorFlow I/O (https://github.com/tensorflow/io) we recommend using that to load a Dataset instead.
+Confusion matrix fractions for predictions on dataset eval dataset of length 54
+             PREDICT   0            1
+   Label = 0      TN 0.333    FN 0.019
+   Label = 1      FP 0.519    TP 0.130
+
+
