@@ -14,6 +14,7 @@ import os
 import pickle
 from matplotlib import pyplot as plt
 import numpy as np
+import random
 #######################################
 
 def encoderAE(inputs, layers):
@@ -37,6 +38,66 @@ def classifyLayers(x):
     x = Dense(1)(x)
     x = Activation('sigmoid')(x)
     return x
+####################################################
+def getSignal(noise, Ntimes, Npsds):
+    # create some horizontal lines as 'signal
+    Nlines = 4
+    for i in range(Nlines):
+        ht = random.randint(5, Npsds - 5)
+        x  = random.randint(5, Ntimes//2)
+        for j in range(Ntimes//3):
+            noise[ht, x+j] = 1
+            noise[ht-1, x + j] = 1
+            noise[ht+1, x + j] = 1
+    return noise
+
+def buildFakeSpectra(Nrecords, Ntimes, Npsds):
+    h5filename = "h5fakeSpecsSml.h5"
+    h5db = h5py.File(h5filename, mode='w')
+    trainSpecs = []
+    trainLbls = []
+    testSpecs = []
+    testLbls = []
+    tests = []
+    for i in range(Nrecords):
+        if i % 100 == 0:
+            print(i, "of", Nrecords)
+        specNoise = np.random.rand(Ntimes, Npsds)
+        specSignal = getSignal(np.random.rand(Ntimes, Npsds), Ntimes, Npsds)
+        if random.random() < 0.75:
+            trainSpecs.append(specSignal)
+            trainLbls.append(1)
+            trainSpecs.append(specNoise)
+            trainLbls.append(0)
+        else:
+            testSpecs.append(specSignal)
+            testLbls.append(1)
+            testSpecs.append(specNoise)
+            testLbls.append(0)
+
+    temp = list(zip(testSpecs, testLbls))
+    random.shuffle(temp)
+    res1, res2 = zip(*temp)
+    # res1 and res2 come out as tuples, and so must be converted to lists.
+    testSpecs, testLbls = list(res1), list(res2)
+    print("Randomize the records")
+    temp = list(zip(trainSpecs, trainLbls))
+    random.shuffle(temp)
+    res1, res2 = zip(*temp)
+    # res1 and res2 come out as tuples, and so must be converted to lists.
+    trainSpecs, trainLbls = list(res1), list(res2)
+    print("fill the h5 database")
+    h5db['train_specs'] = trainSpecs
+    h5db["train_labels"] = trainLbls
+    h5db['test_specs'] = testSpecs
+    h5db["test_labels"] = testLbls
+    print("Plot some examples of fake data")
+    for i in range(10):
+        plt.imshow(h5db['train_specs'][i])
+        plt.title("Label is {}".format(h5db["train_labels"][i]))
+        plt.show()
+    h5db.close()
+    return h5filename
 
 ####################################################
 def generate_arrays_from_h5(h5file, group, group_label, batchsize):
@@ -106,10 +167,23 @@ total_epochs = 10
 prior_epochs = 0
 
 encoderLayers = [256, 128, 32, 8]
-
+useFakeData = True
 #######################  User set parameters ^^^^^^^^^^^^^^^^^^^  above
 
-newModelID = "Classifier_75_20_5_{}_Em_h5".format(encoderLayers)
+### setup the data input
+# initialize generator
+if useFakeData:
+    h5filename = buildFakeSpectra(1000, 256, 256)  # build h5 database with this many records of shape (1000, 256, 256)
+h5file = h5py.File(h5filename, 'r')
+print(h5filename, "keys are", h5file.keys())
+for key in h5file.keys():
+    print(key, "length", len(h5file[key]))
+train = generate_arrays_from_h5(h5file, 'train_specs', 'train_labels', batchsize)  # train is (spectrograms, labels)
+test = generate_arrays_from_h5(h5file, 'test_specs', 'test_labels', batchsize)
+#eval = generate_arrays_from_h5(h5file, 'eval_specs', 'eval_labels', batchsize)
+
+
+newModelID = "Classify_{}_{}_Em_h5".format(h5filename.split(".")[0], encoderLayers)
 newModelID = newModelID.replace(", ", "-")
 
 saveClassifier_ModelDir = "models/{}_{}_{}_epochs/".format(newModelID, prior_epochs, total_epochs)
@@ -139,18 +213,11 @@ print(classifyAE_Model.summary())
 # this plots to the directory where the .py file is
 plot_model(classifyAE_Model,show_shapes=True,show_dtype=True,expand_nested=True, to_file='models/{}.png'.format(newModelID))
 
-### setup the data input
-# initialize generator
-h5file = h5py.File(h5filename, 'r')
-print(h5filename, "keys are", h5file.keys())
-for key in h5file.keys():
-    print(key, "length", len(h5file[key]))
-train = generate_arrays_from_h5(h5file, 'train_specs', 'train_labels', batchsize)  # train is (spectrograms, labels)
-test = generate_arrays_from_h5(h5file, 'test_specs', 'test_labels', batchsize)
-eval = generate_arrays_from_h5(h5file, 'eval_specs', 'eval_labels', batchsize)
+print("Confusion matrix before running fit")
 printConfusionMatrix(classifyAE_Model, "train dataset", next(train))
 #data = next(train)
 #  data[0] are specs  data[1] are labels
+
 chkptFile = "models/" + "{}_best_1100.ckpt".format(newModelID)
 
 checkpoint = ModelCheckpoint(chkptFile, monitor='loss', verbose=1,
@@ -197,6 +264,9 @@ plt.show()
 ###  print confusion matrix on the data files
 printConfusionMatrix(classifyAE_Model, "train dataset", next(train))
 printConfusionMatrix(classifyAE_Model, "test dataset", next(test))
-printConfusionMatrix(classifyAE_Model, "eval dataset", next(eval))
+#printConfusionMatrix(classifyAE_Model, "eval dataset", next(eval))
 
 h5file.close()
+
+if useFakeData:
+    os.remove(h5filename)
