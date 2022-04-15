@@ -2,11 +2,11 @@
 
 # My Questions are:
 
-why does the NN not converge and detect the labelled calls?
-why does the accuracy of the training set increase nicely but
+Why does the NN not converge and detect the labelled calls?
+Why does the accuracy of the training set increase nicely but
      when the labels of the training set are predicted, they are not at all accruate?
       
-here is the confusion matrix after 10 epochs:
+Here is the confusion matrix after 10 epochs:
 
 Confusion matrix fractions for predictions on dataset train dataset of length 828
 
