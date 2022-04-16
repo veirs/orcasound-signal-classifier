@@ -60,7 +60,7 @@ Confusion matrix fractions for predictions on dataset **test** dataset of length
 
 ![Loss - Accuracy](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/7000_40_FakeRecords.png "Loss&Accruacy history")  
 
-What happened around epoch 20 and then around epoch 40?
+What happened around epoch 12 in the Loss and then around epoch 40 in the Accuracy?
 
 ## Try Dropout somewhere? 
 
