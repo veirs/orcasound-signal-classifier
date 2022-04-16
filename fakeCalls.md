@@ -36,7 +36,7 @@ Confusion matrix fractions for predictions on dataset **test** dataset of length
 
 # Run with larger fake dataset?
 
-Run 40 epochs on fake dataset of 7000 records
+## Try run 40 epochs on fake dataset of 7000 records
 
 Save model as: models/Classify_h5fakeSpecsSml_[256-128-32-8]_Em_h5_0_40_epochs/
 
@@ -56,9 +56,11 @@ Confusion matrix fractions for predictions on dataset **test** dataset of length
 |   Label = 0    |  TN 0.360 |   FN 0.120 |
 |   Label = 1    |  FP 0.100 |   TP 0.520 |
 
-**Weirdly, now the NN does better on the **test** dataset
+**Weirdly**, now the NN does better on the **test** dataset
 
 ![Loss - Accuracy](https://github.com/veirs/orcasound-signal-classifier/blob/main/notes/7000_40_FakeRecords.png "Loss&Accruacy history")  
 
-Try Dropout somewhere? 
+What happened around epoch 20 and then around epoch 40?
+
+## Try Dropout somewhere? 
 
